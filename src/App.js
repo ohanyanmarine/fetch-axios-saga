@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function App() {
+import { Home, Users, Posts, Todos, Albums, Comments, NotFound } from "./view";
+
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <div className="header">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+            <li>
+              <Link to="/posts">Posts</Link>
+            </li>
+            <li>
+              <Link to="/todos">Todos</Link>
+            </li>
+            <li>
+              <Link to="/comments">Comments</Link>
+            </li>
+            <li>
+              <Link to="/albums">Albums</Link>
+            </li>
+          </ul>
+        </div>
+        <Switch>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/users" component={Users}></Route>
+          <Route path="/posts" component={Posts}></Route>
+          <Route path="/comments" component={Comments}></Route>
+          <Route path="/todos" component={Todos}></Route>
+          <Route path="/albums" component={Albums}></Route>
+          <Route component={NotFound}></Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
-
-export default App;
